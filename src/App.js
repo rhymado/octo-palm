@@ -7,10 +7,45 @@ class App extends Component {
   // state merupakan variabel lokal dari class (object)
   // jika state berubah maka komponen diperbaharui dom nya (rerender)
   // untuk mengubah state gunakan method setState
-  state = {
-    counter: 0,
-    address: "Jakarta",
-  };
+  constructor(props) {
+    super();
+    this.state = {
+      counter: 0,
+      address: "Jakarta",
+      age: props.age,
+      data: [],
+    };
+    this.controller = new AbortController();
+  }
+
+  componentDidMount() {
+    // bisa jalankan fetch
+    fetch("https://jsonplaceholder.typicode.com/users", {
+      signal: this.controller.signal,
+    })
+      .then((res) => {
+        if (!res.ok) throw res.status;
+        return res.json();
+      })
+      .then((data) => {
+        this.setState({
+          data,
+        });
+      })
+      .catch((err) => {
+        // if (this.controller.signal.aborted) return;
+        console.log(err.message);
+      });
+  }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevState);
+  // }
+
+  componentWillUnmount() {
+    // this.controller.abort();
+  }
+
   changeCounter = () => {
     this.setState({
       counter: 2,
@@ -20,6 +55,13 @@ class App extends Component {
   render() {
     // console.log(this.state.counter);
     // console.log(this.props);
+    // if (this.state.data.length === 0) {
+    //   return (
+    //     <div>
+    //       <p>Loading</p>
+    //     </div>
+    //   );
+    // }
     return (
       <div className="App">
         <header className="App-header">

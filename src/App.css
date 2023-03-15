@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+button {
+  cursor: pointer;
+  user-select: none;
+  padding: 10px;
+  font-size: 1.25rem;
+  border-radius: min(25px, 50%);
+}
+
+button:hover {
+  opacity: 0.8;
+}

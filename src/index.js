@@ -5,11 +5,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
+function Run({ isStrict, children }) {
+  if (isStrict) return <React.StrictMode>{children}</React.StrictMode>;
+  return children;
+}
 root.render(
-  <React.StrictMode>
-    {/* props dimasukkan sebagai atribut */}
+  // {/* props dimasukkan sebagai atribut */}
+  <Run isStrict={false}>
     <App name="Fazztrack" age={17} aria-required href={"https://reactjs.org"} />
-  </React.StrictMode>
+  </Run>
 );
 
 // If you want to start measuring performance in your app, pass a function
