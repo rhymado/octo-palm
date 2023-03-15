@@ -1,3 +1,13 @@
+:root {
+  --color-primary: hsl(229, 42%, 21%);
+  --color-primary-hover: hsl(229, 42%, 26%);
+  --color-secondary: hsl(9, 97%, 61%);
+  --color-secondary-hover: hsl(9, 97%, 66%);
+  --color-accents: hsl(225, 57%, 97%);
+  --padding-horizontal: 120px;
+  --padding-vertical: 10px;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

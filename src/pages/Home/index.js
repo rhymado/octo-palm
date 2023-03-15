@@ -1,12 +1,32 @@
 import React, { Component, Fragment } from "react";
+import _ from "lodash";
 
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 
+import withSearchParams from "../../utils/wrapper/withSearchParams";
+import withNavigate from "../../utils/wrapper/withNavigate";
+
 import styles from "../../styles/home.module.css";
 
 class Home extends Component {
+  handleClick = () => {
+    this.props.setSearchParams({
+      sort: "cheapest",
+      search: "latte",
+    });
+  };
+  componentDidUpdate(prevProps) {
+    const prevSearchParams = Object.fromEntries(prevProps.searchParams);
+    const currentSearchParams = Object.fromEntries(this.props.searchParams);
+    if (!_.isEqual(prevSearchParams, currentSearchParams)) {
+      // get data yang terbaru berdasarkan pencarian atau filter
+      return console.log(currentSearchParams);
+    }
+    console.log("No Change");
+  }
   render() {
+    // console.log(Object.fromEntries(this.props.searchParams));
     return (
       <Fragment>
         <Header />
@@ -18,11 +38,14 @@ class Home extends Component {
                 I’m Amanda Kerr, an experienced marketing creative, with a strong track record of
                 delivering sustainable results or brands across numerous industries.
               </p>
-              <button className={`${styles.btn} ${styles.pointer}`}>Contact me</button>
+              <button className={`${styles.btn} ${styles.pointer}`} onClick={this.handleClick}>
+                Contact me
+              </button>
             </div>
             <img
               src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=656,h=822,fit=crop/kerriu1rk/image-mxkJZKMVOkcP3lWN.jpg"
               alt="profile"
+              onClick={() => this.props.navigate("/")}
             />
           </section>
           <section className="personal">
@@ -82,7 +105,9 @@ class Home extends Component {
                 cultivate in the past speaks for itself. Follow the link below to see some of my
                 work.
               </p>
-              <button className="btn">See projects</button>
+              <button className="btn" onClick={() => this.forceUpdate()}>
+                See projects
+              </button>
             </div>
             <img
               src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=861,h=810,fit=crop/kerriu1rk/kerr-d9vXKnbzzDup9y0w.png"
@@ -118,4 +143,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default withNavigate(withSearchParams(Home));

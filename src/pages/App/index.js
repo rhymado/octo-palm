@@ -1,6 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+
 import logo from "../../assets/logo.svg";
 import "../../styles/app.css";
+
+import withNavigate from "../../utils/wrapper/withNavigate";
 
 // class NamaKomponen extends Component {//implementasi komponen}
 class App extends Component {
@@ -47,6 +51,13 @@ class App extends Component {
     // this.controller.abort();
   }
 
+  handleNavigate(to) {
+    if (this.state.counter !== 2) {
+      return;
+    }
+    this.props.navigate(to);
+  }
+
   changeCounter = () => {
     this.setState({
       counter: 2,
@@ -70,12 +81,16 @@ class App extends Component {
           <p>
             Edit <code>src/App.js</code> and save to reload.
           </p>
-          <a className="App-link" href={this.props.href} target="_blank" rel="noopener noreferrer">
+          {/* <a className="App-link" href={this.props.href} target="_blank" rel="noopener noreferrer">
             Learn React
-          </a>
+          </a> */}
+          <Link to="/home">Home</Link>
           <div>
             <p>Counter: {this.state.counter}</p>
             <button onClick={this.changeCounter}>Change Counter</button>
+          </div>
+          <div>
+            <button onClick={() => this.handleNavigate("/home")}>View CV</button>
           </div>
         </header>
       </div>
@@ -83,4 +98,5 @@ class App extends Component {
   }
 }
 
-export default App;
+const AppWithNavigate = withNavigate(App);
+export default AppWithNavigate;

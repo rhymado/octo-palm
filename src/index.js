@@ -1,7 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
+
 import "./styles/index.css";
-import App from "./pages/Home";
+import router from "./router";
+// import App from "./pages/Home";
 // import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -12,7 +15,7 @@ function Run({ isStrict, children }) {
 root.render(
   // {/* props dimasukkan sebagai atribut */}
   <Run isStrict={true}>
-    <App name="Fazztrack" age={17} aria-required href={"https://reactjs.org"} />
+    <RouterProvider router={router} />
   </Run>
 );
 
