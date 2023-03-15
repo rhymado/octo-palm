@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import logo from "../../assets/logo.svg";
+import "../../styles/app.css";
 
 // class NamaKomponen extends Component {//implementasi komponen}
 class App extends Component {
+  //
   // state merupakan variabel lokal dari class (object)
   // jika state berubah maka komponen diperbaharui dom nya (rerender)
   // untuk mengubah state gunakan method setState
