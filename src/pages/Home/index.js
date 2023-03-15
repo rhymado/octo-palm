@@ -7,7 +7,7 @@ import Footer from "../../components/Footer";
 import withSearchParams from "../../utils/wrapper/withSearchParams";
 import withNavigate from "../../utils/wrapper/withNavigate";
 
-import styles from "../../styles/home.module.css";
+// import styles from "../../styles/home.module.css";
 
 class Home extends Component {
   handleClick = () => {
@@ -31,22 +31,24 @@ class Home extends Component {
       <Fragment>
         <Header />
         <main>
-          <section className={styles.branding}>
-            <div className={styles.content}>
-              <h1 className={styles.title}>Helping brands to stand out</h1>
-              <p className={styles.description}>
+          <section className="bg-primary text-accent px-5 md:px-12 lg:px-30 py-15 md:py-2.5 flex flex-col-reverse md:flex-row section-min-heigth gap-7 md:gap-12 items-center">
+            <div className="p-0 flex-1 flex flex-col justify-center gap-16">
+              <h1 className="text-3xl md:text-6xl">Helping brands to stand out</h1>
+              <p>
                 I’m Amanda Kerr, an experienced marketing creative, with a strong track record of
                 delivering sustainable results or brands across numerous industries.
               </p>
-              <button className={`${styles.btn} ${styles.pointer}`} onClick={this.handleClick}>
+              <button className="btn-custom cursor-pointer select-none" onClick={this.handleClick}>
                 Contact me
               </button>
             </div>
-            <img
-              src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=656,h=822,fit=crop/kerriu1rk/image-mxkJZKMVOkcP3lWN.jpg"
-              alt="profile"
-              onClick={() => this.props.navigate("/")}
-            />
+            <div className="flex-1 p-0">
+              <img
+                className="w-1/2 h-1/2 md:w-full md:h-full mx-auto"
+                src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=656,h=822,fit=crop/kerriu1rk/image-mxkJZKMVOkcP3lWN.jpg"
+                alt="profile"
+              />
+            </div>
           </section>
           <section className="personal">
             <section className="background">
@@ -105,9 +107,7 @@ class Home extends Component {
                 cultivate in the past speaks for itself. Follow the link below to see some of my
                 work.
               </p>
-              <button className="btn" onClick={() => this.forceUpdate()}>
-                See projects
-              </button>
+              <button className="btn">See projects</button>
             </div>
             <img
               src="https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=861,h=810,fit=crop/kerriu1rk/kerr-d9vXKnbzzDup9y0w.png"
