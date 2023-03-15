@@ -5,6 +5,8 @@ import logo from "../../assets/logo.svg";
 import "../../styles/app.css";
 
 import withNavigate from "../../utils/wrapper/withNavigate";
+import { getUsers } from "../../utils/https/placeholder";
+import { uploadImage } from "../../utils/https/auth";
 
 // class NamaKomponen extends Component {//implementasi komponen}
 class App extends Component {
@@ -19,28 +21,34 @@ class App extends Component {
       address: "Jakarta",
       age: props.age,
       data: [],
+      file: null,
     };
     this.controller = new AbortController();
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     // bisa jalankan fetch
-    fetch("https://jsonplaceholder.typicode.com/users", {
-      signal: this.controller.signal,
-    })
-      .then((res) => {
-        if (!res.ok) throw res.status;
-        return res.json();
-      })
-      .then((data) => {
+    // fetchUsers(this.controller)
+    //   .then((res) => {
+    //     if (!res.ok) throw res.status;
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     this.setState({
+    //       data,
+    //     });
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+    await getUsers(
+      this.controller,
+      ({ data }) =>
         this.setState({
           data,
-        });
-      })
-      .catch((err) => {
-        // if (this.controller.signal.aborted) return;
-        console.log(err.message);
-      });
+        }),
+      (err) => console.log(err)
+    );
   }
 
   // componentDidUpdate(prevProps, prevState) {
@@ -64,6 +72,14 @@ class App extends Component {
     });
     // this.state.counter = 2;
   };
+
+  onChangeHandler = (e) => {
+    // console.log(e.target.files[0]);
+    this.setState({
+      file: e.target.files[0],
+    });
+  };
+
   render() {
     // console.log(this.state.counter);
     // console.log(this.props);
@@ -91,6 +107,24 @@ class App extends Component {
           </div>
           <div>
             <button onClick={() => this.handleNavigate("/home")}>View CV</button>
+          </div>
+          <div>
+            <input type="file" onChange={this.onChangeHandler} />
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                if (this.state.file === null) return;
+                uploadImage(this.state.file, this.controller)
+                  .then(({ data }) => {
+                    console.log(data);
+                  })
+                  .catch((err) => {
+                    console.log(err);
+                  });
+              }}
+            >
+              Upload
+            </button>
           </div>
         </header>
       </div>
