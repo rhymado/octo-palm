@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import App from "./pages/App";
 import Home from "./pages/Home";
+import Counter from "./pages/Counter";
 
 const router = createBrowserRouter([
   {
@@ -10,6 +11,10 @@ const router = createBrowserRouter([
     element: <App name="Fazztrack" age={17} aria-required href={"https://reactjs.org"} />,
   },
   { path: "/home", element: <Home /> },
+  {
+    path: "/counter",
+    element: <Counter />,
+  },
 ]);
 
 export default router;
