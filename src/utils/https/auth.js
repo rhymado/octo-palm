@@ -5,7 +5,8 @@ export const login = (email, password, controller) => {
     email,
     password,
   };
-  const url = "https://urban-potato-gilt.vercel.app/auth";
+  // eslint-disable-next-line no-undef
+  const url = `${process.env.REACT_APP_SERVER_HOST}/auth`;
   return axios.post(url, body, {
     signal: controller.signal,
   });
@@ -14,7 +15,8 @@ export const login = (email, password, controller) => {
 export const uploadImage = (img, controller) => {
   const formData = new FormData();
   formData.append("image", img);
-  const url = "https://urban-potato-gilt.vercel.app/";
+  // eslint-disable-next-line no-undef
+  const url = `${process.env.REACT_APP_SERVER_HOST}`;
   return axios.post(url, formData, {
     signal: controller.signal,
   });
