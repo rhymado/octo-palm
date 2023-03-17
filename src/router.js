@@ -4,6 +4,7 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "./pages/App";
 import Home from "./pages/Home";
 import Counter from "./pages/Counter";
+import Cashier from "./pages/Cashier";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path: "/counter",
     element: <Counter title="Calculator" />,
+  },
+  {
+    path: "/cashier",
+    element: <Cashier />,
   },
 ]);
 
