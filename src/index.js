@@ -14,7 +14,7 @@ function Run({ isStrict, children }) {
 }
 root.render(
   // {/* props dimasukkan sebagai atribut */}
-  <Run isStrict={true}>
+  <Run isStrict={false}>
     <RouterProvider router={router} />
   </Run>
 );

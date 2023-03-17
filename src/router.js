@@ -13,7 +13,7 @@ const router = createBrowserRouter([
   { path: "/home", element: <Home /> },
   {
     path: "/counter",
-    element: <Counter />,
+    element: <Counter title="Calculator" />,
   },
 ]);
 
