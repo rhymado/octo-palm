@@ -5,6 +5,7 @@ import App from "./pages/App";
 import Home from "./pages/Home";
 import Counter from "./pages/Counter";
 import Cashier from "./pages/Cashier";
+import Auth from "./pages/Auth";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/cashier",
     element: <Cashier />,
+  },
+  {
+    path: "/auth",
+    element: <Auth />,
   },
 ]);
 
