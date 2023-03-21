@@ -69,16 +69,23 @@ function Register() {
       />
       <label htmlFor="phone">Phone Number: </label>
       <input type="text" name="phone" id="phone" className="p-2 text-white rounded-md bg-black" />
+      <button type="button" className="btn">
+        Register
+      </button>
     </form>
   );
 }
 
 function Auth() {
   const [mode, setMode] = React.useState("Login");
-  const childrenComponent = () => {
-    if (mode === "Login") return <Login />;
-    return <Register />;
-  };
+  // const childrenComponent = () => {
+  //   // if (mode === "Login") return <Login />;
+  //   // return <Register />;
+  //   return mode === "Login" ? <Login /> : <Register />;
+  // };
+  // 1. true dan false => kondisi ? if true : if false
+  // 2. true => kondisi && if true
+  // 3. false => kondisi || if false
   return (
     <main className="h-screen bg-gray-500 text-slate-300 flex flex-col">
       <div className="flex justify-center gap-5 py-4">
@@ -89,7 +96,9 @@ function Auth() {
           Register
         </button>
       </div>
-      <section className="bg-gray-700 flex-1 p-8">{childrenComponent()}</section>
+      <section className="bg-gray-700 flex-1 p-8">
+        {mode === "Login" ? <Login /> : <Register />}
+      </section>
     </main>
   );
 }
