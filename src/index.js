@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
 
 import "./styles/index.css";
 import router from "./router";
 // import App from "./pages/Home";
 // import reportWebVitals from "./reportWebVitals";
 import { themeContext as ThemeContext } from "./contexts/theme";
+import store, { persistor } from "./redux/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 function Run({ isStrict, children }) {
@@ -22,9 +25,13 @@ function App() {
   return (
     // {/* props dimasukkan sebagai atribut */}
     <Run isStrict={false}>
-      <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <RouterProvider router={router} />
-      </ThemeContext.Provider>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeContext.Provider value={{ theme, toggleTheme }}>
+            <RouterProvider router={router} />
+          </ThemeContext.Provider>
+        </PersistGate>
+      </Provider>
     </Run>
   );
 }

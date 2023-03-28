@@ -14,3 +14,9 @@ export const getUsers = (controller, onSuccess, onFailure) => {
     .then(onSuccess)
     .catch(onFailure);
 };
+
+export const getUserPlaceholder = (controller) => {
+  return axios.get("https://jsonplaceholder.typicode.com/users", {
+    signal: controller.signal,
+  });
+};
