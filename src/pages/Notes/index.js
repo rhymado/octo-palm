@@ -5,6 +5,8 @@ import NotesControl from "./NotesControl";
 import NoteList from "./NoteList";
 import Modal from "../../components/Modal";
 
+import { themeContext } from "../../contexts/theme";
+
 function Notes() {
   const [isOpen, setIsOpen] = React.useState(false);
   const toggleModal = () => {
@@ -37,10 +39,15 @@ function Notes() {
       content: "UAS 04/04 Calculus",
     },
   ]);
+  const { theme } = React.useContext(themeContext);
   return (
     <>
       <Header />
-      <main className="bg-slate-700 text-white content-with-header flex flex-col">
+      <main
+        className={`bg-slate-700 ${
+          theme === "light" ? "text-black" : "text-white"
+        } content-with-header flex flex-col`}
+      >
         <NotesControl toggleModal={toggleModal} />
         <NoteList notes={notes} />
       </main>

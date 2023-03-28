@@ -8,6 +8,8 @@ import withNavigate from "../../utils/wrapper/withNavigate";
 import { getUsers } from "../../utils/https/placeholder";
 import { uploadImage } from "../../utils/https/auth";
 
+import { themeContext } from "../../contexts/theme";
+
 // class NamaKomponen extends Component {//implementasi komponen}
 class App extends Component {
   //
@@ -90,6 +92,7 @@ class App extends Component {
     //     </div>
     //   );
     // }
+    console.log(this.context);
     return (
       <div className="App">
         <header className="App-header">
@@ -131,6 +134,7 @@ class App extends Component {
     );
   }
 }
+App.contextType = themeContext;
 
 const AppWithNavigate = withNavigate(App);
 export default AppWithNavigate;
