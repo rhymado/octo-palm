@@ -21,6 +21,9 @@
   .section-min-heigth {
     min-height: calc(100vh - 80px);
   }
+  .content-with-header {
+    min-height: calc(100vh - 5rem);
+  }
 }
 
 :root {
