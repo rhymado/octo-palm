@@ -9,6 +9,16 @@ import { themeContext } from "../../contexts/theme";
 
 function Notes() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [notes, setNotes] = React.useState([
+    {
+      title: "TO DO",
+      content: "1. Bangun 2. Mandi 3.Tidur",
+    },
+    {
+      title: "IMPORTANT",
+      content: "UAS 04/04 Calculus",
+    },
+  ]);
   const toggleModal = () => {
     setIsOpen((isOpen) => {
       return !isOpen;
@@ -29,16 +39,6 @@ function Notes() {
     e.target.content.value = "";
     toggleModal();
   };
-  const [notes, setNotes] = React.useState([
-    {
-      title: "TO DO",
-      content: "1. Bangun 2. Mandi 3.Tidur",
-    },
-    {
-      title: "IMPORTANT",
-      content: "UAS 04/04 Calculus",
-    },
-  ]);
   const { theme } = React.useContext(themeContext);
   return (
     <>
