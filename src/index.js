@@ -14,7 +14,13 @@ import { Analytics } from "@vercel/analytics/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 function Run({ isStrict, children }) {
-  if (isStrict) return <React.StrictMode>{children}</React.StrictMode>;
+  if (isStrict)
+    return (
+      <React.StrictMode>
+        {children}
+        <Analytics />
+      </React.StrictMode>
+    );
   return children;
 }
 function App() {
@@ -33,7 +39,6 @@ function App() {
           </ThemeContext.Provider>
         </PersistGate>
       </Provider>
-      <Analytics />
     </Run>
   );
 }
