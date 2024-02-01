@@ -10,6 +10,7 @@ import router from "./router";
 // import reportWebVitals from "./reportWebVitals";
 import { themeContext as ThemeContext } from "./contexts/theme";
 import store, { persistor } from "./redux/store";
+import { Analytics } from "@vercel/analytics/react";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 function Run({ isStrict, children }) {
@@ -32,6 +33,7 @@ function App() {
           </ThemeContext.Provider>
         </PersistGate>
       </Provider>
+      <Analytics />
     </Run>
   );
 }
